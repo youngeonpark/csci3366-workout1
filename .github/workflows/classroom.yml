@@ -1,0 +1,228 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Screenshot
+      id: screenshot
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Screenshot
+        setup-command: ''
+        command: '[ -f screenshot.png -o -f screenshot.PNG ] && echo yes'
+        input: 
+        expected-output: yes
+        comparison-method: exact
+        timeout: 10
+        max-score: 20
+    - name: Test1
+      id: test1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test1
+        setup-command: ''
+        command: runhaskell Test1.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test2
+      id: test2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test2
+        setup-command: ''
+        command: runhaskell Test2.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test3
+      id: test3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test3
+        setup-command: ''
+        command: runhaskell Test3.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test4
+      id: test4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test4
+        setup-command: ''
+        command: runhaskell Test4.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test5
+      id: test5
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test5
+        setup-command: ''
+        command: runhaskell Test5.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test6
+      id: test6
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test6
+        setup-command: ''
+        command: runhaskell Test6.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test7
+      id: test7
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test7
+        setup-command: ''
+        command: runhaskell Test7.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test8
+      id: test8
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test8
+        setup-command: ''
+        command: runhaskell Test8.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test9
+      id: test9
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test9
+        setup-command: ''
+        command: runhaskell Test9.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test10
+      id: test10
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test10
+        setup-command: ''
+        command: runhaskell Test10.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test11
+      id: test11
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test11
+        setup-command: ''
+        command: runhaskell Test11.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test12
+      id: test12
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test12
+        setup-command: ''
+        command: runhaskell Test12.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test13
+      id: test13
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test13
+        setup-command: ''
+        command: runhaskell Test13.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test14
+      id: test14
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test14
+        setup-command: ''
+        command: runhaskell Test14.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Test15
+      id: test15
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test15
+        setup-command: ''
+        command: runhaskell Test15.hs
+        input: 
+        expected-output: 'Passing.'
+        comparison-method: exact
+        timeout: 10
+        max-score: 5
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        SCREENSHOT_RESULTS: "${{steps.screenshot.outputs.result}}"
+        TEST1_RESULTS: "${{steps.test1.outputs.result}}"
+        TEST2_RESULTS: "${{steps.test2.outputs.result}}"
+        TEST3_RESULTS: "${{steps.test3.outputs.result}}"
+        TEST4_RESULTS: "${{steps.test4.outputs.result}}"
+        TEST5_RESULTS: "${{steps.test5.outputs.result}}"
+        TEST6_RESULTS: "${{steps.test6.outputs.result}}"
+        TEST7_RESULTS: "${{steps.test7.outputs.result}}"
+        TEST8_RESULTS: "${{steps.test8.outputs.result}}"
+        TEST9_RESULTS: "${{steps.test9.outputs.result}}"
+        TEST10_RESULTS: "${{steps.test10.outputs.result}}"
+        TEST11_RESULTS: "${{steps.test11.outputs.result}}"
+        TEST12_RESULTS: "${{steps.test12.outputs.result}}"
+        TEST13_RESULTS: "${{steps.test13.outputs.result}}"
+        TEST14_RESULTS: "${{steps.test14.outputs.result}}"
+        TEST15_RESULTS: "${{steps.test15.outputs.result}}"                
+      with:
+        runners: screenshot,test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14,test15

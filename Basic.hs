@@ -13,23 +13,23 @@ hello = "Welcome to Haskell!"
 
 -- add the components of the input tuple
 p1 :: (Int,Int,Int) -> Int
-p1 (a,b,c) = undefined
+p1 (a,b,c) = (a+b+c)
 
 -- swap the components of the input tuple
 p2 :: (a,b) -> (b,a)
-p2 (x,y) = undefined
+p2 (x,y) = (y,x)
 
 -- add the two input tuples as vectors (so add first components, then add second components)
 p3 :: (Int,Int) -> (Int,Int) -> (Int,Int)
-p3 (a,b) (x,y) = undefined
+p3 (a,b) (x,y) = (a+x, b+y)
 
 -- combine two pairs into a tuple with four components
 p4 :: (a,b) -> (c,d) -> (a,b,c,d)
-p4 (a,b) (c,d) = undefined
+p4 (a,b) (c,d) = (a,b,c,d)
 
 -- break a flat tuple into two nested ones
 p5 :: (a,b,c,d) -> ((a,b),(c,d))
-p5 (a,b,c,d) = undefined
+p5 (a,b,c,d) = ((a,b),(c,d))
 
 ----------------------------------------------------
 -- Strings and converting to strings
@@ -37,21 +37,21 @@ p5 (a,b,c,d) = undefined
 
 -- duplicate the input string (so return a string with two copies of s back to back)
 p6 :: String -> String
-p6 s = undefined
+p6 s = s ++ s
 
 -- concatenate the input characters into a single string
 p7 :: Char -> Char -> Char -> String
-p7 a b c = undefined
+p7 a b c = a : b : c : ""
 
 -- Concatenate the strings with " is " in the middle.
 -- So p8 "the dog" "lazy" should return "the dog is lazy"
 p8 :: String -> String -> String
-p8 s1 s2 = undefined
+p8 s1 s2 = s1 ++ " is " ++ s2
 
 {- given x and y, print out the string with the string version of x, then " / ", and
    then the string version of y -}
 p9 :: Integer -> Integer -> String
-p9 x y = undefined
+p9 x y = show x ++ " / " ++ show y
 
 {- print the rational number as numerator / denominator
 
@@ -61,7 +61,7 @@ p9 x y = undefined
    https://hackage.haskell.org/package/base-4.21.0.0/docs/Data-Ratio.html
 -}
 p10 :: Rational -> String
-p10 x = undefined
+p10 x = p9 (numerator x) (denominator x)
 
 ----------------------------------------------------
 -- Lists
@@ -75,17 +75,17 @@ p10 x = undefined
 
 -- return a new list which is the concatenation of the three inputs lists
 p11 :: [a] -> [a] -> [a] -> [a]
-p11 xs ys zs = undefined
+p11 xs ys zs = xs ++ ys ++ zs
 
 -- return a list which is just like the input list except without
 -- the first and last elements (it can fail if the list has fewer
 -- than 2 elements)
 p12 :: [a] -> [a]
-p12 l = undefined
+p12 l = (tail . init) l
 
 -- append xs with the reverse of xs (so p13 "abc" should return "abccba")
 p13 :: [a] -> [a]
-p13 xs = undefined
+p13 xs = xs ++ (reverse xs)
 
 ----------------------------------------------------
 -- Higher-order functions
@@ -95,8 +95,8 @@ p13 xs = undefined
 
 -- p14 f x should call f three times (in nested fashion) on x
 p14 :: (a -> a) -> a -> a
-p14 = undefined
+p14 = \x ->x.x.x
 
 -- apply a function to each component of a tuple, building a new tuple
 p15 :: (a -> b) -> (a,a) -> (b,b)
-p15 = undefined
+p15 = \f (x,y) -> (f x, f y)
